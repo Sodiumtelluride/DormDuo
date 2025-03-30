@@ -18,7 +18,7 @@ function App() {
     // <Context.Provider value={[PFPUrl, setPFPUrl]}>
     <>
       <Navbar/>
-      <CardGrid/>
+      <LandingPage/>
       <LowTaperFade/> 
     </>
     // </Context.Provider>
