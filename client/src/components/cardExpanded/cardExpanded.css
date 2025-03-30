@@ -4,7 +4,7 @@
     left:0;
     right:0;
     bottom:0;
-    @apply bg-background-medium rounded-3xl m-32;
+    @apply bg-background-medium rounded-3xl mb-32;
 }
 
 button{
@@ -38,7 +38,6 @@ button{
 }
 
 .button-container > button {
-    width:25%;
     @apply bg-highlight-color p-2 rounded-md;
 }
 

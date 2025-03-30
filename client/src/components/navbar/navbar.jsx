@@ -25,7 +25,7 @@ function Navbar(props) {
                 <a href='../../../pages/userPage/userPage.html'>
                     <img src={PFPUrl} alt="profile" id='profile-icon' />
                 </a>
-                <a href='../../../index.html'>
+                <a href='../../../pages/cardGridPage/cardGridPage.html'>
                     <img src={logo} alt="logo" className="logo" />
                 </a>
                 <a href='../../../pages/messages/messages.html'> 
@@ -38,7 +38,7 @@ function Navbar(props) {
     return (
     <>
         <nav className='nav'>
-                <a href='../../../index.html'>
+                <a href='../../../pages/cardGridPage/cardGridPage.html'>
                     <img src={logo} alt="logo" className="logo" />
                 </a>
             <div className='nav-right'>

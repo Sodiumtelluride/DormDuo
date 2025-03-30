@@ -1,3 +1,3 @@
 .LowTaperFade{
-    @apply fixed bottom-0 left-0 h-56 w-full bg-gradient-to-t from-background-dark via-background-dark/70 to-transparent;
+    @apply fixed bottom-0 left-0 h-56 w-full bg-gradient-to-t from-background-dark via-background-dark/70 to-transparent pointer-events-none;
 }

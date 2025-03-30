@@ -12,7 +12,7 @@ button:hover{
 }
 
 .login-button {
-    @apply bg-background-medium border-2 border-background-medium transition duration-300 ease-in-out;
+    @apply bg-background-medium border-2 border-background-medium transition duration-300 ease-in-out mr-4;
 }
 
 .signup-button {

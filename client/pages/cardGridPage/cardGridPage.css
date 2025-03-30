@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: theme(colors.app-white);
+}
+
+body {
+  @apply bg-background-dark m-0 p-0;
+}
+
+@layer components{
+
+  .nav{
+    @apply flex justify-between content-center m-4 ml-8 mr-8 bg-transparent self-center;
+  }
+  
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .GridWrapper {
+        @apply grid-cols-1;
+    }
+    .card-expanded {
+        @apply grid-cols-1;
+    }
+    .card-details-expanded {
+        @apply grid-cols-1;
+    }
+    .card-img-expanded {
+        width:50%;
+        height:50%;
+    }
+    .background {
+        @apply m-8;
+    }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .GridWrapper {
+        @apply grid-cols-2;
+    }
+    .card-expanded {
+        @apply grid-cols-1;
+    }
+    .card-details-expanded {
+        @apply grid-cols-1;
+    }
+    .card-img-expanded {
+        width:50%;
+        height:50%;
+    }
+    .background {
+        @apply m-8;
+    }
+    
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .GridWrapper {
+        @apply grid-cols-3;
+    }
+    .card-expanded {
+        @apply grid-cols-2;
+    }
+    .card-details-expanded {
+        @apply grid-cols-2;
+    }
+    .card-img-expanded {
+        width:75%;
+        height:75%;
+    }
+    .background {
+        @apply m-32;
+    }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .GridWrapper {
+        @apply grid-cols-4;
+    }
+    
+
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {
+    input {
+        @apply w-full;
+    }
+} */
