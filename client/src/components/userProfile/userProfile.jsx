@@ -68,6 +68,7 @@ export default function UserProfile(props) {
             reader.readAsDataURL(data.image);
         }
     }, [data.image]);
+
      useEffect(() => {
         if(data.user_info.roommate && data.user_info.roommate.id) {
             fetch(`http://localhost:5174/user/${data.user_info.roommate.id}`, {
@@ -85,6 +86,7 @@ export default function UserProfile(props) {
               .catch(error => console.error('Error fetching data:', error));
         }
     }, [data]);
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         if (name === "email" || name==="password") {
@@ -204,6 +206,7 @@ export default function UserProfile(props) {
             console.log(err);
         }
     };
+    
     return (
         <form onSubmit={handleSubmit} encType="multipart/form-data" className="user-profile">
             <div className="login-info">

@@ -2,7 +2,6 @@ import './Navbar.css'
 import React, { useState, useEffect } from 'react'
 import Messages from '../../assets/Messages.png'
 import Profile from '../../assets/Profile.png'
-import ROOMME from '../../assets/ROOMME.png'
 import logo from '../../assets/logo.svg'
 // import { Context } from '../../App.jsx'
 function Navbar(props) {

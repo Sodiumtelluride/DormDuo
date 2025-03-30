@@ -46,6 +46,16 @@ function CreateUserForm() {
         }
     }
 
+    const getPasswordError = () => {
+        const errors = [];
+        if (!/(?=.*\d)/.test(formData.password)) errors.push("one number");
+        if (!/(?=.*[a-z])/.test(formData.password)) errors.push("one lowercase letter");
+        if (!/(?=.*[A-Z])/.test(formData.password)) errors.push("one uppercase letter");
+        if (!/(?=.*\W)/.test(formData.password)) errors.push("one special character");
+        if (formData.password.length < 8) errors.push("at least 8 characters long");
+        return errors.length > 0 ? `Password must contain ${errors.join(', ')}.` : '';
+    }
+
     return(
         <form id='create-user-form' action="POST" onSubmit={handleSubmit}>
             <h1>Sign Up</h1>
@@ -61,9 +71,26 @@ function CreateUserForm() {
                 </div>
             </div>
             <label className="form-lable" htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange}/>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                value={formData.email} 
+                onChange={handleChange}
+            />
             <label className="form-lable" htmlFor="password">Password</label>
-            <input type="password" id="password" name="password" required value={formData.password} onChange={handleChange}/>
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                required 
+                value={formData.password} 
+                onChange={handleChange}
+            />
+            {formData.password && (
+                <p className="errorMsg">{getPasswordError()}</p>
+            )}
             <button id='submit-button' type='submit'>Create Account</button>
         </form>
     )

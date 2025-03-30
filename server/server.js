@@ -22,6 +22,10 @@ const getChatRouter = require('./routes/getChat');
 const addRoommateRouter = require('./routes/addRoommate');
 const deleteRoommatRequestRouter = require('./routes/deleteRoommate');
 const createChatRouter = require('./routes/createChat');
+const verifyEmailRouter = require('./routes/verifyEmail');
+const verifyPasswordResetRouter = require('./routes/verifyPasswordReset');
+const resetPasswordRouter = require('./routes/resetPassword');
+const forgotPasswordRouter = require('./routes/forgotPassword');
 const cookieJWTAuth = require('./middleware/cookieJWTAuth');
 const path = require('path');
 require('dotenv').config();
@@ -82,6 +86,9 @@ AWS.config.update({
 
 // API Routes
 app.use('/', loginRouter); // Login route should not require authentication
+app.use('/', verifyEmailRouter);
+app.use('/', forgotPasswordRouter);
+app.use('/', verifyPasswordResetRouter);
 app.use('/getMe', cookieJWTAuth, getMeRouter); // Use the middleware and route
 app.use('/user', cookieJWTAuth, getUserRouter); // Use the middleware and route
 app.use('/createUser', createUserRouter);
@@ -95,6 +102,9 @@ app.use('/roomRequest', cookieJWTAuth, deleteRoomRequestRouter);
 app.use('/roommateRequest', cookieJWTAuth, deleteRoommatRequestRouter);
 app.use('/roommate', cookieJWTAuth, addRoommateRouter);
 app.use('/chat', cookieJWTAuth, createChatRouter);
+app.use('/', cookieJWTAuth, resetPasswordRouter);
+
+
 
 //messaging 
 

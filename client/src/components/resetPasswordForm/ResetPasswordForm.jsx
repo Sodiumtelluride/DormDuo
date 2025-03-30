@@ -1,11 +1,11 @@
-import './LoginForm.css';
+import './ResetPasswordForm.css';
 import { useState } from 'react';
 
-export default function LoginForm() {
+export default function ResetPasswordForm() {
     const [errorMsg, setErrorMsg] = useState('');
     const [formData, setFormData] = useState({
-        email: '',
-        password: ''
+        newPassword: '',
+        confirmPassword: ''
     });
 
     const handleChange = (e) => {
@@ -18,9 +18,13 @@ export default function LoginForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (formData.newPassword !== formData.confirmPassword) {
+            setErrorMsg('Passwords do not match');
+            return;
+        }
         try {
             console.log(formData);
-            const response = await fetch('http://localhost:5174/login', {
+            const response = await fetch('http://localhost:5174/resetPassword', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -40,18 +44,13 @@ export default function LoginForm() {
             console.error('Error:', error);
         }
     };
-
-    const forgotPassword = async () => {
-
-    };
     return (
-        <form onSubmit={handleSubmit} className='login-form'>
-            <h1>Login</h1>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" onChange={handleChange} required />
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" name="password" onChange={handleChange} required />
-            <div className="forgot-password" onClick={forgotPassword}><a href="../../../pages/forgotPassword/forgotPassword.html">Forgot Password?</a></div>
+        <form onSubmit={handleSubmit} className='reset-password-form'>
+            <h1>Reset Password</h1>
+            <label htmlFor="newPassword">New Password</label>
+            <input type="password" id="new-password" name="newPassword" onChange={handleChange} required />
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirmPassword" onChange={handleChange} required />
             <button type="submit" id='submit'>Login</button>
         </form>
     )

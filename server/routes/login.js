@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
     const authenticateUser = async () => {
         const doesUserExist = await dynamoDB.query(paramsForQuery).promise();
 
-        if (doesUserExist.Count === 0) {
+        if (doesUserExist.Count === 0 || !doesUserExist.Items[0].confirmed) {
             return false;
         } else {
             console.log(doesUserExist.Items[0].password);
