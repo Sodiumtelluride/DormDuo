@@ -20,6 +20,7 @@ export default function CardExpanded(props) {
         setCurrentImageIndex((prevIndex) => (prevIndex === props.img.length - 1 ? 0 : prevIndex + 1));
     };
     console.log(props.email);
+
     const startChat = () => {
         fetch('http://localhost:5174/chat/create', {
             method: 'POST',
@@ -42,6 +43,41 @@ export default function CardExpanded(props) {
         });
     };
 
+    const getCleanlinessClass = () => {
+        switch (props.cleanliness) {
+            case 0:
+                return 'fill level-1';
+            case 1:
+                return 'fill level-2';
+            case 2:
+                return 'fill level-3';
+            case 3:
+                return 'fill level-4';
+            case 4:
+                return 'fill level-5';
+            default:
+                return 'fill';
+        }
+    };
+
+    const getExtraversionClass = () => {
+        switch (props.extraversion) {
+            case 0:
+                return 'fill level-1';
+            case 1:
+                return 'fill level-2';
+            case 2:
+                return 'fill level-3';
+            case 3:
+                return 'fill level-4';
+            case 4:
+                return 'fill level-5';
+            default:
+                return 'fill';
+        }
+    };
+    console.log(props.cleanliness);
+    console.log(getCleanlinessClass());
     return (
         <div className="background">
             <div className="card-expanded">
@@ -78,14 +114,14 @@ export default function CardExpanded(props) {
                         <div className="extraversion-expanded">
                             <h3 className="info-heading-expanded">Extraversion</h3>
                             <div className="fill-bar">
-                                <div className="fill" id="extraversion-fill"></div>
+                                <div className={getExtraversionClass()} id="extraversion-fill"></div>
                             </div>
                         </div>
 
                         <div className="cleanliness-expanded">
                             <h3 className="info-heading-expanded">Cleanliness</h3>
                             <div className="fill-bar">
-                                <div className="fill" id="cleanliness-fill"></div>
+                                <div className={getCleanlinessClass()} id="cleanliness-fill"></div>
                             </div>
                         </div>
 

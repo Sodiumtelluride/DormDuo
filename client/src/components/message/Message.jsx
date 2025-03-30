@@ -1,6 +1,15 @@
 import './Message.css';
 
 export default function Message(props) {
+    function formatTime(time) {
+        const [hours, minutes] = time.split(':');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12;
+        return `${formattedHours}:${minutes} ${ampm}`;
+    }
+
+    const formattedTime = formatTime(props.timeDelivered);
+
     const acceptRequest = () => {
         fetch('http://localhost:5174/roommate/add', {
             method: 'POST',
@@ -30,7 +39,7 @@ export default function Message(props) {
                     {!props.sentByUser && <button className="accept-btn" onClick={acceptRequest}>Accept</button>}
                 </div>
                 {/* <div className="message-info"> */}
-                    <div className={props.sentByUser ? "time-SBU" : "time-NSBU"}>{props.timeDelivered}</div>
+                    <div className={props.sentByUser ? "time-SBU" : "time-NSBU"}>{formatTime(props.timeDelivered)}</div>
                     <img className={props.sentByUser ? "pfp-SBU" : "pfp-NSBU"} src={props.pfp}></img>
                 {/* </div> */}
             </div>
@@ -43,7 +52,7 @@ export default function Message(props) {
                 <p className='message'>{props.message}</p>
             </div>
             {/* <div className="message-info"> */}
-                <div className={props.sentByUser ? "time-SBU" : "time-NSBU"}>{props.timeDelivered}</div>
+                <div className={props.sentByUser ? "time-SBU" : "time-NSBU"}>{formatTime(props.timeDelivered)}</div>
                 <img className={props.sentByUser ? "pfp-SBU" : "pfp-NSBU"} src={props.pfp}></img>
             {/* </div> */}
         </div>

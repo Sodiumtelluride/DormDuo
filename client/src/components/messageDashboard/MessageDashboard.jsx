@@ -90,7 +90,6 @@ export default function MessageDashboard() {
     return(
         <>
             <div className="MessageDashboard">
-            <Navbar inChat = {true}/>
                 <div className="Contacts">
                     <div className="contact-cards">
                         {chatData.length > 0 ? chatData.map((chat, index) => (
@@ -117,10 +116,13 @@ export default function MessageDashboard() {
                             requested={hasRequested}
                         />
                     ) : (
-                        <div className="no-chat-selected">
-                            <img id='message-icon' src={messageIcon} />
-                            Please select a chat
-                        </div>
+                        <>
+                            <Navbar inChat={true}/>
+                            <div className="no-chat-selected">
+                                <img id='message-icon' src={messageIcon} />
+                                Please select a chat
+                            </div>
+                        </>
                     )}
                 </div>
             </div>
