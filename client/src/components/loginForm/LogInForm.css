@@ -28,8 +28,6 @@ button:hover{
     @apply flex flex-col justify-between p-4 rounded-xl m-auto mt-40;
     width: 20%;
     height: 20%;
-<<<<<<< HEAD
-=======
     margin-left: 40%;
     margin-top: 10%;
 }
@@ -40,5 +38,8 @@ button:hover{
 
 .forgot-password{
     @apply text-highlight-color text-sm underline self-end mb-5 cursor-pointer;
->>>>>>> origin
+}
+
+.errorMsg{
+    @apply text-error-red;
 }

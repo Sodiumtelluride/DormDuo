@@ -33,7 +33,8 @@ export default function LoginForm() {
             if(response.ok) {
                 window.location.href = result.redirectUrl;
             } else {
-                setErrorMsg(result.error);
+                setErrorMsg(result.message);
+                console.log(result);
                 console.log(errorMsg);
             }
         } catch (error) {
@@ -47,6 +48,7 @@ export default function LoginForm() {
     return (
         <form onSubmit={handleSubmit} className='login-form'>
             <h1>Login</h1>
+            <h3 className='errorMsg'>{errorMsg}</h3>
             <label htmlFor="email">Email</label>
             <input type="email" id="email" name="email" onChange={handleChange} required />
             <label htmlFor="password">Password</label>
