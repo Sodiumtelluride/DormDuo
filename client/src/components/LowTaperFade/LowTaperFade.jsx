@@ -6,13 +6,14 @@ export default function LowTaperFade() {
     useEffect(() => {
         const handleScroll = () => {
             const element = document.querySelector('.LowTaperFade');
-            const scrollPosition = window.innerHeight + window.scrollY;
-            const documentHeight = document.body.offsetHeight;
-            const fadeStart = documentHeight - window.innerHeight;
-            const fadeEnd = documentHeight;
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const fadeStart = documentHeight - windowHeight - 200; // Start fading 200px before bottom
+            const fadeEnd = documentHeight - windowHeight;
 
             if (scrollPosition >= fadeStart) {
-            const opacity = 1 - (scrollPosition - fadeStart) / (fadeEnd - fadeStart);
+            const opacity = Math.max(0, 1 - (scrollPosition - fadeStart) / (fadeEnd - fadeStart));
             element.style.opacity = opacity;
             } else {
             element.style.opacity = 1;
@@ -20,6 +21,7 @@ export default function LowTaperFade() {
         };
 
         window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial call to set opacity
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };

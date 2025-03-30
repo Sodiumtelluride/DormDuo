@@ -2,7 +2,6 @@ import './Navbar.css'
 import React, { useState, useEffect } from 'react'
 import Messages from '../../assets/Messages.png'
 import Profile from '../../assets/Profile.png'
-import ROOMME from '../../assets/ROOMME.png'
 import logo from '../../assets/logo.svg'
 // import { Context } from '../../App.jsx'
 function Navbar(props) {
@@ -26,7 +25,7 @@ function Navbar(props) {
                 <a href='../../../pages/userPage/userPage.html'>
                     <img src={PFPUrl} alt="profile" id='profile-icon' />
                 </a>
-                <a href='../../../index.html'>
+                <a href='../../../pages/cardGridPage/cardGridPage.html'>
                     <img src={logo} alt="logo" className="logo" />
                 </a>
                 <a href='../../../pages/messages/messages.html'> 
@@ -39,7 +38,7 @@ function Navbar(props) {
     return (
     <>
         <nav className='nav'>
-                <a href='../../../index.html'>
+                <a href='../../../pages/cardGridPage/cardGridPage.html'>
                     <img src={logo} alt="logo" className="logo" />
                 </a>
             <div className='nav-right'>

@@ -1,8 +1,11 @@
 .landing-page {
     @apply grid place-items-center grid-cols-1 gap-4;
 }
-.main-tagline {
+.main {
     @apply text-7xl font-bold leading-tight mb-4 mt-20;
+}
+.tagline {
+    @apply text-center;
 }
 .gradient {
     @apply bg-gradient-to-r from-[#8B7EFF] to-white bg-clip-text text-transparent;

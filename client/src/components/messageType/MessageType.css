@@ -1,15 +1,14 @@
 .full-chat {
-    @apply grid gap-4 justify-center w-full;
-    /* grid-template-columns: 1fr; */
+    @apply grid gap-4 w-full;
     height: 100vh;
-
-    grid-template-rows: 1fr 4rem;
+    grid-template-rows: auto 1fr auto;
 }
 
 #message-form {
-    @apply flex p-3 items-center justify-center mb-7 h-12 bg-background-medium rounded-lg;
-    width: 50vw;
-    grid-row: 2; /* Place message-form in the second row */
+    @apply flex p-3 items-center self-center justify-center mb-7 h-12 bg-background-medium rounded-lg;
+    width: 60%;
+    margin-left: 20%;
+    grid-row: 3; /* Place message-form in the second row */
 }
 
 #message-input, #message-input:active, #message-input:focus {
@@ -19,7 +18,7 @@
 
 .chat {
     @apply p-3 flex flex-col overflow-y-scroll; /* Change overflow-scroll to overflow-y-scroll */
-    grid-row: 1; /* Place chat in the first row */
+    grid-row: 2; /* Place chat in the first row */
     width: 100%;
 }
 
@@ -50,4 +49,9 @@
 .request-btn:hover {
     @apply bg-background-medium;
     transition: background-color 0.3s ease-in-out;
+}
+
+.navbar {
+    grid-row: 1; /* Place navbar in the first row */
+    width: 100%;
 }

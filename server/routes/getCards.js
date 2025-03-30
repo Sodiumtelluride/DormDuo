@@ -28,10 +28,12 @@ router.get('/get', async (req, res) => {
 
     try {
         const result = await dynamoDB.scan(params).promise();
-        let index=0;
-        let itemSurrender=16;
-        while (index<itemSurrender && index<result.Items.length) {
-            if (result.Items[index].user_info.major!=null && result.Items[index].user_info.grad!=null && result.Items[index].user_info.description!=null) {
+        let index = 0;
+        let itemSurrender = 16;
+        while (index < itemSurrender && index < result.Items.length) {
+            if (result.Items[index].user_info.major != null && result.Items[index].user_info.grad != null && result.Items[index].user_info.description != null && result.Items[index].user_info.major != "null" && result.Items[index].user_info.grad != "null" && result.Items[index].user_info.description != "null") {
+                console.log("major: ", result.Items[index].user_info.major);
+                console.log("grad: ", result.Items[index].user_info.grad);
                 const urls = [];
                 const imageNames = [result.Items[index].images.image_1_name, result.Items[index].images.image_2_name, result.Items[index].images.image_3_name, result.Items[index].images.image_4_name, result.Items[index].images.image_5_name];
                console.log("imageNames: ", imageNames);

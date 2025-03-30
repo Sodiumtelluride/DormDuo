@@ -1,5 +1,5 @@
 .GridWrapper{
-    @apply grid grid-cols-4 gap-4 mt-4;
+    @apply grid grid-cols-4 gap-4 mt-4 place-items-center;
 }
 .GridWrapper.blur-background {
     @apply blur;

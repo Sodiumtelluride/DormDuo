@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 import Message from '../message/Message.jsx';
 import PFP from '../../assets/UserPhoto.png';
 import { useEffect } from 'react';
-
+import Navbar from '../navbar/navbar.jsx';
 
 export default function MessageType({ socket, chat, chatId, username, id, requested }) {
     const [message, setMessage] = useState('');
@@ -134,6 +134,9 @@ export default function MessageType({ socket, chat, chatId, username, id, reques
     return (
         <div className='full-chat'>
             {/* <ScrollToBottom className="chat"> */}
+            <div className="navbar">
+                <Navbar inChat = {true}/>
+            </div>
             <div className="chat" key={messageList.length} ref={chatRef}>
                 {messageList.map((message, index) => (
                     <Message
