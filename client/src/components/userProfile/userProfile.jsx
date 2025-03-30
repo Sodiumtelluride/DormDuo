@@ -561,11 +561,11 @@ export default function UserProfile(props) {
                             {data.imageUrls.map((url, index) => (
                                 <div className="image" key={index}>
                                     {url !== null && 
-                                        <div>
+                                        <div className="image-container">
                                             <img src={url} alt="" />
                                             <button className="delete-button" type="button" onClick={() => handleDelete(url)}>Delete</button>
                                         </div>    
-                                        }
+                                    }
     
                                 </div>
                             ))}

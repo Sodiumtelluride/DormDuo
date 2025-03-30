@@ -46,11 +46,20 @@
     @apply grid grid-cols-5 row-span-2 p-8 place-items-center bg-background-medium rounded-lg;
 }
 .image {
-    @apply m-4 max-h-24 max-w-24;
+    @apply m-4 max-h-40 max-w-24;
 }
 .image > .delete-button {
     @apply p-2;
 }
+
+.image-container{
+    @apply flex flex-col items-center justify-center;
+}
+
+.image-container > img{
+    @apply rounded-lg h-20;
+}
+
 button {
     @apply p-5 rounded-lg m-3;
 }
