@@ -235,7 +235,7 @@ export default function UserProfile(props) {
 
             <div className="profile-info">
                 <div className="column-one">
-                    <div className="email field">
+                    {/* <div className="email field">
                         <h3 className="email heading">Email:</h3>
                         <textarea 
                             name="email"
@@ -252,7 +252,7 @@ export default function UserProfile(props) {
                             onChange={handleChange} 
                             className="password-text"
                         ></textarea>
-                    </div>
+                    </div> */}
                     <div className="display-name field">
                         <h3 className="display-name heading">Display Name:</h3>
                         <textarea 
@@ -539,7 +539,7 @@ export default function UserProfile(props) {
                         <input type="file" name="images" accept="image/*" className="picture-upload-input" onChange={handleChange} multiple/>
                     </div>
                     
-                    <div className='images field'>
+                    {/* <div className='images field'>
                         <h3 className='image heading'>Images:</h3>
                         <div className="images-container">
                             {data.imageUrls.map((url, index) => (
@@ -554,7 +554,7 @@ export default function UserProfile(props) {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div> */}
                     <div className='images field'>
                         <h3 className='image heading'>Images:</h3>
                         <div className="images-container">
