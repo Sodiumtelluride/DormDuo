@@ -11,18 +11,30 @@ export default function UserProfile(props) {
     });
     const [roomate, setRoomate] = useState({});
     useEffect(() => {
-        fetch('http://localhost:5174/getMe/me', {
-            method: 'GET',
-            credentials: 'include'
-        })
-        .then(response => response.json())
-        .then(data => {
+        const fetchData = async () => {
+            try {
+            const response = await fetch('http://localhost:5174/getMe/me', {
+                method: 'GET',
+                credentials: 'include'
+            });
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            if (data.redirectUrl === '/pages/login/login.html') {
+                console.log('No token provided, redirecting to login page');
+                window.location.href = data.redirectUrl;
+            }
             setImageCount(data.imageUrls.length);
             console.log("urls", data.imageUrls);
             console.log('Fetched data:', data);
             setData(data);
-        })
-        .catch(error => console.error('Error fetching data:', error));
+            } catch (error) {
+            console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
     }, []);
 
     useEffect(() => {

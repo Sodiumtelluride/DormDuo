@@ -12,16 +12,33 @@ export default function CardGrid(){
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5174/cards/get', {
-            method: 'GET',
-            credentials: 'include'
-        })
-          .then(response => response.json())
-          .then(data => {
-            console.log('Fetched data:', data);
-            setCards(data);
-        })
-          .catch(error => console.error('Error fetching data:', error));
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:5174/cards/get', {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    console.error('Error response:', error);
+                    throw new Error('Failed to fetch data');
+                }
+
+                const data = await response.json();
+                console.log('Fetched data:', data);
+                setCards(data);
+
+                if (data.redirectUrl === '/pages/login/login.html') {
+                    console.log('No token provided, redirecting to login page');
+                    window.location.href = data.redirectUrl;
+                }
+            } catch (error) {
+            console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
     }, []);
   
     
@@ -52,6 +69,8 @@ export default function CardGrid(){
 
     const getExtraversionLevel = (level) => extraversionLevels[level] || 0;
     const getCleanlinessLevel = (level) => cleanlinessLevels[level] || 0;
+
+    
 
     return (
         <>

@@ -69,6 +69,7 @@ router.get('/get', async (req, res) => {
         }res.status(201).json(allItems);
     } catch (error) {
         console.error("Error fetching data:", error);
+        console.log("error!!!!!!");
     }
     
 });
