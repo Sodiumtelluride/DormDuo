@@ -46,6 +46,10 @@ export default function MessageDashboard() {
                 }
 
                 const data = await response.json();
+                if (data.redirectUrl === '/pages/login/login.html') {
+                    console.log('No token provided, redirecting to login page');
+                    window.location.href = data.redirectUrl;
+                }
                 console.log('Fetched data:', data);
                 setDisplayName(data.user_info.display_name);
                 setWantedChats(data.chat_ids || []); // Ensure chat_ids is defined
