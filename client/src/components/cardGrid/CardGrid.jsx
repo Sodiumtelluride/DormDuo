@@ -6,41 +6,44 @@ import React from 'react';
 import CardExpanded from '../cardExpanded/cardExpanded.jsx';
 import Navbar from '../navbar/navbar.jsx'
 import LowTaperFade from '../LowTaperFade/LowTaperFade.jsx'
+import {BounceLoader, PuffLoader} from 'react-spinners';
 export default function CardGrid(){
     const [selectedCard, setSelectedCard] = useState(null);
     const [cards, setCards] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(true); // Loading state
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true); // Set loading state to true
             try {
-                const response = await fetch('http://localhost:5174/cards/get', {
-                    method: 'GET',
-                    credentials: 'include'
-                });
+            const response = await fetch('http://localhost:5174/cards/get', {
+                method: 'GET',
+                credentials: 'include'
+            });
 
-                if (!response.ok) {
-                    const error = await response.json();
-                    console.error('Error response:', error);
-                    throw new Error('Failed to fetch data');
-                }
+            if (!response.ok) {
+                const error = await response.json();
+                console.error('Error response:', error);
+                throw new Error('Failed to fetch data');
+            }
 
-                const data = await response.json();
-                console.log('Fetched data:', data);
-                setCards(data);
+            const data = await response.json();
+            console.log('Fetched data:', data);
+            setCards(data);
 
-                if (data.redirectUrl === '/pages/login/login.html') {
-                    console.log('No token provided, redirecting to login page');
-                    window.location.href = data.redirectUrl;
-                }
+            if (data.redirectUrl === '/pages/login/login.html') {
+                console.log('No token provided, redirecting to login page');
+                window.location.href = data.redirectUrl;
+            }
             } catch (error) {
-            console.error('Error fetching data:', error);
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false); // Set loading state to false
             }
         };
-
         fetchData();
     }, []);
-  
+
     
     const handleCardClick = (cardData) => {
         setSelectedCard(cardData);
@@ -76,6 +79,11 @@ export default function CardGrid(){
         <>
             <Navbar/>
             <div className="CardGrid">
+                {isLoading && 
+                    <div className="loading-container">
+                        <PuffLoader color='#8B7EFF' size={100}/>
+                    </div>        
+                }
                 <div className={`GridWrapper ${isModalOpen ? 'blur-background' : ''}`}> 
                     {cards.map((card, index) => (
                         <Card
