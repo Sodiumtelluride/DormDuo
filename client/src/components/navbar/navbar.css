@@ -23,3 +23,6 @@
     grid-template-columns: 2/3;
     grid-template-rows: 1/2;
 }
+.nav-not-in-chat {
+    animation: fadeIn 3s;
+}

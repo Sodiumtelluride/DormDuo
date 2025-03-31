@@ -4,7 +4,7 @@ import MessagePreview from '../messagePreview/MessagePreview.jsx';
 import MessageType from '../messageType/MessageType.jsx';
 import PFP from '../../assets/UserPhoto.png';
 // import Profile from '../../assets/Profile.png'
-import BackArrow from '../../assets/BackArrow.png';
+import DownArrow from '../../assets/DownArrow.svg';
 import logo from '../../assets/ROOMME.png';
 import Profile from '../../assets/Profile.png';
 import Navbar from '../navbar/navbar.jsx';
@@ -87,10 +87,28 @@ export default function MessageDashboard() {
         setCurrentChat(chat);
     };
 
+    const [isCollapsed, setIsCollapsed] = useState(false);
+
+    const toggleCollapse = () => {
+        setIsCollapsed(!isCollapsed);
+    };
+
+    
     return(
         <>
-            <div className="MessageDashboard">
-                <div className="Contacts">
+            {isCollapsed && (
+                <button className="collapse-tab expanded" onClick={toggleCollapse}>
+                    <div className="tab-rect collapsed"></div>
+                </button>
+            )}
+            <div className={`MessageDashboard ${isCollapsed ? 'collapsed' : ''}`}>
+                <div className={`Contacts ${isCollapsed ? 'collapsed' : ''}`}>
+                    {!isCollapsed && (
+                        <button className="collapse-button" onClick={toggleCollapse}>
+                            <div className="tab-rect expanded"></div>
+                        </button>   
+                    )}
+                    
                     <div className="contact-cards">
                         {chatData.length > 0 ? chatData.map((chat, index) => (
                             <MessagePreview 
@@ -112,11 +130,12 @@ export default function MessageDashboard() {
                             chat={currentChat}
                             chatId={currentChat.chat_id}
                             username={displayName}
-                            id = {userId}
+                            id={userId}
                             requested={hasRequested}
                         />
                     ) : (
                         <>
+                           
                             <Navbar inChat={true}/>
                             <div className="no-chat-selected">
                                 <img id='message-icon' src={messageIcon} />
