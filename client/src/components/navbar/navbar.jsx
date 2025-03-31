@@ -5,7 +5,7 @@ import Profile from '../../assets/Profile.png'
 import logo from '../../assets/logo.svg'
 // import { Context } from '../../App.jsx'
 function Navbar(props) {
-    const [ PFPUrl, setPFPUrl ] = useState('');
+    const [ PFPUrl, setPFPUrl ] = useState(Profile);
     console.log("PFPUrl:", PFPUrl);
     useEffect(() => {
         fetch('http://localhost:5174/getMe/me', {
@@ -23,7 +23,7 @@ function Navbar(props) {
         return (
             <nav className='nav nav-in-chat'>
                 <a href='../../../pages/userPage/userPage.html'>
-                    <img src={PFPUrl} alt="profile" id='profile-icon' />
+                    <img src={PFPUrl} alt={Profile} id='profile-icon' />
                 </a>
                 <a href='../../../pages/cardGridPage/cardGridPage.html'>
                     <img src={logo} alt="logo" className="logo" />
