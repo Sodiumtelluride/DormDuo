@@ -1,10 +1,9 @@
-h1{
+.user-title > h1{
     @apply text-2xl font-bold mr-2;
 }
 
-h2{
-    color: theme(colors.text-grey);
-    @apply text-lg font-bold self-end;
+.user-title > h2{
+    @apply text-lg font-bold self-end text-text-grey;
 }
 
 h3{
