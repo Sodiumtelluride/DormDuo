@@ -11,5 +11,5 @@
 }
 
 .loading-container {
-    @apply flex justify-center items-center absolute top-0 left-0 w-full h-full;
+    @apply flex justify-center items-center absolute top-0 left-0 w-full h-1/2;
 }

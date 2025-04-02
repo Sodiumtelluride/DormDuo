@@ -10,6 +10,7 @@ import Profile from '../../assets/Profile.png';
 import Navbar from '../navbar/navbar.jsx';
 import messageIcon from '../../assets/Messages.png';
 import { useState, useEffect } from 'react';
+import { PuffLoader } from 'react-spinners';
 
 import { io } from 'socket.io-client';
 
@@ -28,11 +29,13 @@ export default function MessageDashboard() {
     const [chatData, setChatData] = useState([]);
     const [hasRequested, setHasRequested] = useState(false);
     const [userId, setUserId] = useState("");
+    const [isLoading, setIsLoading] = useState(true); // Loading state
     console.log(wantedChats);
 
     useEffect(() => {
         const fetchUserData = async () => {
             console.log("Fetching user data...");
+            setIsLoading(true); // Set loading state to true
             try {
                 const response = await fetch('http://localhost:5174/getMe/me', {
                     method: 'GET',
@@ -58,6 +61,8 @@ export default function MessageDashboard() {
                 setHasRequested(data.user_info.request.id !== '' && data.user_info.request.request_sent_to !== '');
             } catch (error) {
                 console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false); // Set loading state to false
             }
         };
         fetchUserData();
@@ -96,6 +101,11 @@ export default function MessageDashboard() {
             <div className="MessageDashboard">
                 <div className="Contacts">
                     <div className="contact-cards">
+                        {isLoading && 
+                            <div className="loading-container">
+                                <PuffLoader color='#8B7EFF' size={75}/>
+                            </div>     
+                        }
                         {chatData.length > 0 ? chatData.map((chat, index) => (
                             <MessagePreview 
                                 key={index}
@@ -106,7 +116,7 @@ export default function MessageDashboard() {
                                 onClick={() => handleChatClick(chat)}
                                 isActive={currentChat ? currentChat.chat_id === chat.chat_id : false}
                             />
-                        )) : <div className="no-chats">No chats</div>}
+                        )) : isLoading ? <></> : <div className="no-chats">No chats</div>}
                     </div>
                 </div>
                 <div className="chat-ui">
